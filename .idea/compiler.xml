@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for logErrorTest" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="applicationName" value="logErrorTest" />
+        <option name="logErrorClass" value="org.apache.log4j.Logger" />
+        <option name="logErrorMethod" value="error" />
+        <option name="recordingMode" value="OnEvent" />
+        <option name="recordServerAddress" value="localhost" />
+        <option name="recordServerPort" value="42734" />
+        <option name="repositoryPath" value="[STORAGE_PATH]" />
+        <option name="REVDEBUG_TRACE_LOG_ERROR" value="true" />
+        <option name="solutionName" value="logErrorTest" />
+        <option name="uploadMetadata" value="true" />
+        <module name="logErrorTest" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="logErrorTest" options="-ArecordServerAddress=localhost -ArecordServerPort=42734 -ArecordingMode=OnEvent -AapplicationName=logErrorTest -AsolutionName=logErrorTest -ArepositoryPath=[STORAGE_PATH] -AuploadMetadata=true -AlogErrorClass=org.apache.log4j.Logger -AlogErrorMethod=error -AREVDEBUG_TRACE_LOG_ERROR=true" />
+    </option>
+  </component>
+</project>

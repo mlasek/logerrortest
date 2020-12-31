@@ -1,0 +1,14 @@
+Repository.Port=42734;
+Repository.Address=localhost;
+Repository.Path=[STORAGE_PATH];
+SolutionName=logErrorTest;
+Application.Name=logErrorTest;
+StateStorageClassName=OnEvent;
+Release=null;
+UploadMetadata=true;
+BacklogSize=1000;
+CrashRecorderCallRecordServer=true;
+AuthorizationToken=null;
+Verbosity=info;
+LogErrorClass=org.apache.log4j.Logger;
+LogErrorMethod=error;

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.revdebug.logerror</groupId>
+    <artifactId>logErrorTest</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.revdebug</groupId>
+            <artifactId>compiler</artifactId>
+            <version>unspecified</version>
+        </dependency>
+        <dependency>
+            <groupId>com.revdebug</groupId>
+            <artifactId>RevDeBug</artifactId>
+            <version>unspecified</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.vincenzopalazzo</groupId>
+            <artifactId>material-ui-swing</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement> <!--for adding rdb to all projects-->
+            <plugins>
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>4.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>get-the-git-infos</id>
+                            <goals>
+                                <goal>revision</goal>
+                            </goals>
+                            <phase>validate</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <compilerArgs>
+                            <arg>-ArecordServerAddress=localhost</arg>
+                            <arg>-ArecordServerPort=42734</arg>
+                            <arg>-ArecordingMode=OnEvent</arg>
+                            <arg>-AapplicationName=logErrorTest</arg>
+                            <arg>-AsolutionName=logErrorTest</arg>
+                            <arg>-ArepositoryPath=repository</arg>
+                            <arg>-AuploadMetadata=true</arg>
+                            <arg>-AlogErrorClass=org.apache.log4j.Logger</arg>
+                            <arg>-AlogErrorMethod=error</arg>
+                            <arg>-AREVDEBUG_TRACE_LOG_ERROR=true</arg>
+                        </compilerArgs>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- Maven Assembly Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <!-- get all project dependencies -->
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <!-- MainClass in mainfest make a executable jar -->
+                    <archive>
+                        <manifest>
+                            <mainClass>com.revdebug.logerror.LogErrorTest</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- bind to the package phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
